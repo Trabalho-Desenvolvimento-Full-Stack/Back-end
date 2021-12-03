@@ -2,6 +2,8 @@ namespace Back_end.Entity
 {
     public class ItemPedido
     {
-        //Terminar classe Produto...
+        
+        public int produtoId {get; set;}
+        public int pedidoId {get; set;}
     }
 }

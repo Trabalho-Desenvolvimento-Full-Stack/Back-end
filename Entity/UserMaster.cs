@@ -8,5 +8,5 @@ namespace Back_end
         public string cpf {get; set;}
         public string email {get; set;}
         public string senha {get; set;}
-        }
+    }
 }
