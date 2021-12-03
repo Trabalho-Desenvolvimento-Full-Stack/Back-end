@@ -11,26 +11,26 @@ namespace Back_end.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
+    public class UserMasterController : ControllerBase
     {
 
         [HttpGet]
-        public ActionResult<IEnumerable<Cliente>> Get()
+        public ActionResult<IEnumerable<UserMaster>> Get()
         {
             using (MyContext ctx = new MyContext())
             {
-                return Ok(ctx.Clientes.ToList());
+                return Ok(ctx.UsersMaster.ToList());
             }
         }
 
 
 
         [HttpGet("{id}")]
-        public ActionResult<Cliente> GetPeloId(int id)
+        public ActionResult<UserMaster> GetPeloId(int id)
         {
             using (MyContext context = new MyContext())
             {
-                Usuario user = context.Clientes.Where(u => u.Id.Equals(id)).FirstOrDefault();
+                Usuario user = context.UsersMaster.Where(u => u.Id.Equals(id)).FirstOrDefault();
 
                 if (user == null)
                     return NotFound();
@@ -41,30 +41,30 @@ namespace Back_end.Controllers
 
 
         [HttpPost]
-        public ActionResult<Cliente> Post(Cliente usuario)
+        public ActionResult<UserMaster> Post(UserMaster user)
         {
             using (MyContext ctx = new MyContext())
             {
 
-                ctx.Usuarios.Add(usuario);
+                ctx.UsersMaster.Add(user);
 
                 ctx.SaveChanges();
             }
-            return usuario;
+            return user;
         }
 
 
 
         [HttpPut]
-        public ActionResult<Cliente> Put(Cliente usuario)
+        public ActionResult<UserMaster> Put(UserMaster user)
         {
             using (MyContext ctx = new MyContext())
             {
-                ctx.Usuarios.Update(usuario);
+                ctx.UsersMaster.Update(user);
                 ctx.SaveChanges();
             }
 
-            return usuario;
+            return user;
         }
 
 
@@ -74,10 +74,10 @@ namespace Back_end.Controllers
         {
             using (MyContext ctx = new MyContext())
             {
-                Cliente usuario = ctx.Clientes.Where(u => u.Id.Equals(id)).FirstOrDefault();
-                if (usuario == null)
+                UserMaster user = ctx.UsersMaster.Where(u => u.Id.Equals(id)).FirstOrDefault();
+                if (user == null)
                     return NotFound();
-                ctx.Clientes.Remove(usuario);
+                ctx.UsersMaster.Remove(user);
                 ctx.SaveChanges();
             }
 

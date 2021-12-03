@@ -11,26 +11,26 @@ namespace Back_end.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
+    public class PedidoController : ControllerBase
     {
 
         [HttpGet]
-        public ActionResult<IEnumerable<Cliente>> Get()
+        public ActionResult<IEnumerable<Pedido>> Get()
         {
             using (MyContext ctx = new MyContext())
             {
-                return Ok(ctx.Clientes.ToList());
+                return Ok(ctx.Pedidos.ToList());
             }
         }
 
 
 
         [HttpGet("{id}")]
-        public ActionResult<Cliente> GetPeloId(int id)
+        public ActionResult<Pedido> GetPeloId(int id)
         {
             using (MyContext context = new MyContext())
             {
-                Usuario user = context.Clientes.Where(u => u.Id.Equals(id)).FirstOrDefault();
+                Pedido user = context.Pedidos.Where(u => u.Id.Equals(id)).FirstOrDefault();
 
                 if (user == null)
                     return NotFound();
@@ -41,30 +41,30 @@ namespace Back_end.Controllers
 
 
         [HttpPost]
-        public ActionResult<Cliente> Post(Cliente usuario)
+        public ActionResult<Pedido> Post(Pedido pedido)
         {
             using (MyContext ctx = new MyContext())
             {
 
-                ctx.Usuarios.Add(usuario);
+                ctx.Pedidos.Add(pedido);
 
                 ctx.SaveChanges();
             }
-            return usuario;
+            return pedido;
         }
 
 
 
         [HttpPut]
-        public ActionResult<Cliente> Put(Cliente usuario)
+        public ActionResult<Pedido> Put(Pedido pedido)
         {
             using (MyContext ctx = new MyContext())
             {
-                ctx.Usuarios.Update(usuario);
+                ctx.Pedidos.Update(pedido);
                 ctx.SaveChanges();
             }
 
-            return usuario;
+            return pedido;
         }
 
 
@@ -74,10 +74,10 @@ namespace Back_end.Controllers
         {
             using (MyContext ctx = new MyContext())
             {
-                Cliente usuario = ctx.Clientes.Where(u => u.Id.Equals(id)).FirstOrDefault();
-                if (usuario == null)
+                Pedido pedido = ctx.Pedidos.Where(u => u.Id.Equals(id)).FirstOrDefault();
+                if (pedido == null)
                     return NotFound();
-                ctx.Clientes.Remove(usuario);
+                ctx.Pedidos.Remove(pedido);
                 ctx.SaveChanges();
             }
 

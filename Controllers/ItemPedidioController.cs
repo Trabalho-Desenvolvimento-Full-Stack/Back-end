@@ -11,26 +11,26 @@ namespace Back_end.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClienteController : ControllerBase
+    public class ItemPedidoController : ControllerBase
     {
 
         [HttpGet]
-        public ActionResult<IEnumerable<Cliente>> Get()
+        public ActionResult<IEnumerable<ItemPedido>> Get()
         {
             using (MyContext ctx = new MyContext())
             {
-                return Ok(ctx.Clientes.ToList());
+                return Ok(ctx.ItemPedidos.ToList());
             }
         }
 
 
 
         [HttpGet("{id}")]
-        public ActionResult<Cliente> GetPeloId(int id)
+        public ActionResult<ItemPedido> GetPeloId(int id)
         {
             using (MyContext context = new MyContext())
             {
-                Usuario user = context.Clientes.Where(u => u.Id.Equals(id)).FirstOrDefault();
+                ItemPedido user = context.ItemPedidos.Where(u => u.Id.Equals(id)).FirstOrDefault();
 
                 if (user == null)
                     return NotFound();
@@ -41,30 +41,30 @@ namespace Back_end.Controllers
 
 
         [HttpPost]
-        public ActionResult<Cliente> Post(Cliente usuario)
+        public ActionResult<ItemPedido> Post(ItemPedido item)
         {
             using (MyContext ctx = new MyContext())
             {
 
-                ctx.Usuarios.Add(usuario);
+                ctx.ItensPedidos.Add(item);
 
                 ctx.SaveChanges();
             }
-            return usuario;
+            return item;
         }
 
 
 
         [HttpPut]
-        public ActionResult<Cliente> Put(Cliente usuario)
+        public ActionResult<ItemPedido> Put(ItemPedido item)
         {
             using (MyContext ctx = new MyContext())
             {
-                ctx.Usuarios.Update(usuario);
+                ctx.ItensPedidos.Update(item);
                 ctx.SaveChanges();
             }
 
-            return usuario;
+            return item;
         }
 
 
@@ -74,10 +74,10 @@ namespace Back_end.Controllers
         {
             using (MyContext ctx = new MyContext())
             {
-                Cliente usuario = ctx.Clientes.Where(u => u.Id.Equals(id)).FirstOrDefault();
-                if (usuario == null)
+                ItemPedido item = ctx.ItemPedidos.Where(u => u.Id.Equals(id)).FirstOrDefault();
+                if (item == null)
                     return NotFound();
-                ctx.Clientes.Remove(usuario);
+                ctx.ItemPedidos.Remove(item);
                 ctx.SaveChanges();
             }
 
