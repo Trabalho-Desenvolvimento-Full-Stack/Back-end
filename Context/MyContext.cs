@@ -16,7 +16,7 @@ namespace Back_end.Context {
         public DBSet<UserMaster> UsersMaster {get; set;}
 
         protected override void onConfiguring(DBcontextOptionsBuilder optionsBuilder) {
-            optionsBuilder.UseSqlServer("");
+            optionsBuilder.UseSqlServer("data source=45.93.100.120,1433;initial catalog=aereo;persist security info=True;user id=suporte;password=suporte;MultipleActiveResultSets=True;App=exeEf;");
         }
 
         protected override void onModelCreating(ModelBuilder builder) {

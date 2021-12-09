@@ -4,6 +4,7 @@ namespace Back_end.Entity
     {
         public int id {get; set;}
         public string nome {get; set;}
+        [ForeignKey("Categoria")]
         public string categoria {get; set;}
         public double preco {get; set;}
         public string titulo {get; set;}
